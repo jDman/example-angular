@@ -1,0 +1,13 @@
+<main>
+  <nav>
+    <ul>
+      <li routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+        <a [routerLink]="['/dashboard']">Dashboard</a>
+      </li>
+      <li>
+        <button type="button">Logout</button>
+      </li>
+    </ul>
+  </nav>
+  <router-outlet></router-outlet>
+</main>
