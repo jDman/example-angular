@@ -1,12 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Character } from '../interfaces/character';
 import { ActivatedRoute, Data } from '@angular/router';
-import { take } from 'rxjs';
 
 @Component({
   selector: 'app-character',
   templateUrl: './character.component.html',
-  styleUrls: ['./character.component.scss']
+  styleUrls: ['./character.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterComponent implements OnInit {
   public character: Character | null = null;
@@ -14,7 +14,7 @@ export class CharacterComponent implements OnInit {
   constructor(private readonly route: ActivatedRoute) {}
 
   ngOnInit(): void {
-    this.route.data.pipe(take(1)).subscribe((data: Data) => {
+    this.route.data.subscribe((data: Data) => {
       this.character = data['character'];
     });
   }

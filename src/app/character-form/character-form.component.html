@@ -1,0 +1,31 @@
+<form [formGroup]="characterForm" (ngSubmit)="submitForm()">
+  <div>
+    <input type="text" formControlName="characterName">
+  </div>
+  <div>
+    <input type="text" formControlName="characterHeight">
+  </div>
+  <div>
+    <input type="text" formControlName="characterWeight">
+  </div>
+  <div formArrayName="characterLikes">
+    <h4>Likes</h4>
+    <button type="button" (click)="addLike()">Add Like</button>
+
+    <div *ngFor="let control of getLikeControls(), let controlIndex = index">
+      <input type="text" [formControlName]="controlIndex">
+      <button type="button" (click)="removeLike(controlIndex)">Remove</button>
+    </div>
+  </div>
+  <div formArrayName="characterDislikes">
+    <h4>Dislikes</h4>
+    <button type="button" (click)="addDislike()">Add Dislike</button>
+
+    <div *ngFor="let control of getDislikeControls(), let controlIndex = index">
+      <input type="text" [formControlName]="controlIndex">
+      <button type="button" (click)="removeLike(controlIndex)">Remove</button>
+    </div>
+  </div>
+
+  <button type="submit">Add Character</button>
+</form>

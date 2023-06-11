@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { CharactersService } from '../services/characters.service';
 import { take } from 'rxjs';
 import { Character } from '../interfaces/character';
@@ -6,7 +6,8 @@ import { Character } from '../interfaces/character';
 @Component({
   selector: 'app-dashboard',
   templateUrl: './dashboard.component.html',
-  styleUrls: ['./dashboard.component.scss']
+  styleUrls: ['./dashboard.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class DashboardComponent implements OnInit {
   public characters: Character[] = [];
