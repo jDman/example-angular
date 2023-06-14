@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { Character } from '../interfaces/character';
 
 @Component({
   selector: 'app-character-form',
@@ -8,9 +9,13 @@ import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@ang
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class CharacterFormComponent implements OnInit {
+  @Output() characterFormSubmitted = new EventEmitter<Omit<Character, 'id'>>();
+
   public characterForm!: FormGroup;
 
-  constructor(private readonly fb: FormBuilder) {}
+  constructor(
+    private readonly fb: FormBuilder,
+  ) {}
 
   ngOnInit(): void {
     this.characterForm = this.fb.group({
@@ -49,7 +54,16 @@ export class CharacterFormComponent implements OnInit {
   }
 
   public submitForm(): void {
-    console.log(this.characterForm.value);
+    const characterFormValue = this.characterForm.value;
+    const newCharacter = {
+      name: characterFormValue.characterName,
+      height: characterFormValue.characterHeight,
+      weight: characterFormValue.characterWeight,
+      likes: characterFormValue.characterLikes,
+      dislikes: characterFormValue.characterDislikes
+    }
+    
+    this.characterFormSubmitted.emit(newCharacter);
     this.characterForm.reset();
   }
 }

@@ -1,9 +1,15 @@
-<div *ngIf="character">
+<div class="character" *ngIf="character">
   <h1>{{ character.name }}</h1>
 
-  <h5>Likes:</h5>
+  <h5>Height</h5>
+  {{ character.height }}
+
+  <h5>Weight</h5>
+  {{ character.weight }}
+
+  <h5>Likes</h5>
   <p *ngFor="let like of character.likes">{{ like }}</p>
 
-  <h5>Dislikes:</h5>
+  <h5>Dislikes</h5>
   <p *ngFor="let dislike of character.dislikes">{{ dislike }}</p>
 </div>

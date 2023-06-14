@@ -1,18 +1,35 @@
-<form [formGroup]="characterForm" (ngSubmit)="submitForm()">
-  <div>
-    <input type="text" formControlName="characterName">
+<form class="character-form" [formGroup]="characterForm" (ngSubmit)="submitForm()">
+  <div class="character-form__control">
+    <label for="characterName">Name</label>
+    <input
+      type="text"
+      id="characterName"
+      name="characterName"
+      formControlName="characterName">
   </div>
-  <div>
-    <input type="text" formControlName="characterHeight">
+  <div class="character-form__control">
+    <label for="characterHeight">Height</label>
+    <input 
+      type="text"
+      id="characterHeight"
+      name="characterHeight"
+      formControlName="characterHeight">
   </div>
-  <div>
-    <input type="text" formControlName="characterWeight">
+  <div class="character-form__control">
+    <label for="characterWeight">Weight</label>
+    <input
+      type="text"
+      id="characterWeight"
+      name="characterWeight"
+      formControlName="characterWeight">
   </div>
   <div formArrayName="characterLikes">
     <h4>Likes</h4>
     <button type="button" (click)="addLike()">Add Like</button>
 
-    <div *ngFor="let control of getLikeControls(), let controlIndex = index">
+    <div
+      class="character-form__control"
+      *ngFor="let control of getLikeControls(), let controlIndex = index">
       <input type="text" [formControlName]="controlIndex">
       <button type="button" (click)="removeLike(controlIndex)">Remove</button>
     </div>
@@ -21,11 +38,14 @@
     <h4>Dislikes</h4>
     <button type="button" (click)="addDislike()">Add Dislike</button>
 
-    <div *ngFor="let control of getDislikeControls(), let controlIndex = index">
+    <div
+      class="character-form__control"
+      *ngFor="let control of getDislikeControls(), let controlIndex = index">
       <input type="text" [formControlName]="controlIndex">
       <button type="button" (click)="removeLike(controlIndex)">Remove</button>
     </div>
   </div>
-
-  <button type="submit">Add Character</button>
+  <div class="character-form__submit-btn">
+    <button type="submit">Add Character</button>
+  </div>
 </form>
