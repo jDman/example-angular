@@ -1,9 +1,9 @@
 <nav>
-  <ul>
+  <ul *ngIf="isAuthenticated">
     <li routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
     <a [routerLink]="['/dashboard']">Dashboard</a>
     </li>
-    <li *ngIf="isAuthenticated">
+    <li>
     <button type="button" (click)="logOut()">Logout</button>
     </li>
   </ul>

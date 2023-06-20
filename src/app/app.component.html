@@ -1,4 +1,5 @@
-<main>
-  <app-navbar></app-navbar>
+<app-navbar [isAuthenticated]="isAuthenticated" (loggedOut)="logOut()">
+</app-navbar>
+<main> 
   <router-outlet></router-outlet>
 </main>

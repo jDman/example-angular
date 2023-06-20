@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router';
 
@@ -9,18 +9,11 @@ import { Router } from '@angular/router';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class NavbarComponent {
-  constructor(
-    private readonly router: Router,
-    private readonly authService: AuthService
-  ) {}
+  @Input() isAuthenticated: boolean = false;
 
-  public get isAuthenticated(): boolean {
-    return this.authService.loggedIn;
-  }
+  @Output() loggedOut = new EventEmitter<void>();
 
   public logOut(): void {
-    this.authService.logOut();
-
-    this.router.navigate(['login']);
+    this.loggedOut.emit();
   }
 }
