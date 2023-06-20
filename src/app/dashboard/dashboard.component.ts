@@ -30,7 +30,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
         const characterAlastName = characterAnameList[characterAnameList.length - 1];
         const characterBnameList = characterB.name.split(' ');
         const characterBlastName = characterBnameList[characterBnameList.length - 1];
-        console.log(characters);
+
         return characterAlastName.localeCompare(characterBlastName);
       }));
   }

@@ -4,11 +4,12 @@ import { LoginComponent } from './login/login.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { CharacterComponent } from './character/character.component';
 import { characterResolver } from './character/character-resolver';
+import { authGuard } from './guards/auth.guard';
 
 const routes: Routes = [
   
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard', component: DashboardComponent, canMatch: [authGuard] },
   { path: 'character/:id', component: CharacterComponent, resolve: { character: characterResolver } },
   { path: '', redirectTo: 'login', pathMatch: 'full' },
 ];

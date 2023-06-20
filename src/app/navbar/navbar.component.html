@@ -1,0 +1,10 @@
+<nav>
+  <ul>
+    <li routerLinkActive="active-link" [routerLinkActiveOptions]="{ exact: true }">
+    <a [routerLink]="['/dashboard']">Dashboard</a>
+    </li>
+    <li *ngIf="isAuthenticated">
+    <button type="button" (click)="logOut()">Logout</button>
+    </li>
+  </ul>
+</nav>
